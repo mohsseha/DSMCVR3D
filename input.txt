@@ -1,0 +1,62 @@
+# this is the config file for DSMCVR3D. #'s are ignored and you just need to put things in a pair XX=yy look here:
+# http://java.sun.com/j2se/1.4.2/docs/api/java/util/Properties.html for a detailed description of the file format. 
+# u can't have comments in the smae line as the setting :( 
+
+#***** >>> Common things to modify <<<
+#total number of simulation steps 
+totalSteps=500 
+#number of particles/cell
+pkPerCell=4500
+# Steady state results are -1 means that startSSSampling=endTransSampling
+startSSSampling=-1
+#this is the time step in units of MTBC
+relativeDt=0.166666666666666666666666
+#estimated average number of particles per epsilon; this is |S_i| in our papers and thesis:
+PKS_EPS=10
+#temperature BC is TRef-dT and TRef+dT
+dT=10
+# Moving wall boundary condition 
+NormalizedWallSpeed=0.000000000
+#number of cells in the y direction
+celly=60
+#domain width in units of MFP 
+NormalizedLy=10
+
+
+
+
+#***** >>> Physical gas properties  
+dia=0.4e-9
+n0Ref=1.4e17
+mass=5.e-26
+TRef=300
+
+
+
+#***** >>> Less common:
+#number of copies of the simulation to run. The code will automatically average all values when giving results
+totalEnsembles=10000
+#results for steps 0 to this value are independently kept track of 
+endTransSampling=91
+#make sure you use "true" instead of "true " (i.e. with space). Same goes for false
+#if regular DMSC the weights are all set to 1.0 and VR results are worthless. If not regular DSMC stabilization is auto selected. 
+regularDSMC=false
+#this parameter ctl's eps_y ie. the distance in the y direction for smearing 
+homolleIC=false
+# determines if we save the whole state of the calculation (so we can restart it or debug it) or just the resutls
+deleteRestart=true
+# Either way restart files are created incrementally (they'r just deleted at the end). 
+refState=1
+cellx=1
+cellz=1
+NormalizedLx=1
+NormalizedLz=1
+
+
+
+
+#***** >>> You probably don't want to touch these:
+#random seed if it's -1 the computer will choose one randomly
+randomSeed=-1
+#this is the number of particles in an average NN cell; this will not affect the result at all and will only make things slightly faster or slower. See appendix of thesis
+defPkVCell=6
